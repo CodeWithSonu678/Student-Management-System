@@ -21,8 +21,8 @@ This is a simple and efficient **console-based Student Management System** writt
 ```bash
 StudentManagementSystem/
 │
-├── main.c            # Main C program
-├── students.txt      # Data file (for storing student records)
+├── student_management_system.c            # Main C program
+├── records.txt      # Data file (for storing student records)
 ├── records.csv       # Exported CSV file
 └── README.md
 ```
