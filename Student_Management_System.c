@@ -19,35 +19,7 @@ void Termnewline(char *str)
     }
 }
 
-void login()
-{
-    char inputname[25];
-    int roll;
-    int found = 0;
-    struct student s;
-    FILE *fp = fopen("sonu.txt", "r");
-    printf("Enter your name : ");
-    fgets(inputname, sizeof(inputname), stdin);
-    Termnewline(inputname);
-    printf("Enter your roll no : ");
-    scanf("d", &roll);
-    getchar();
-    while (fread(&s, sizeof(s), 1, fp))
-    {
-        if (strcmp(inputname, s.name) == 0 && strcmp(roll, s.roll) == 0)
-        {
-            printf("\033[0;32mLogin success full !\033[0m");
-        }
 
-        found = 1;
-    }
-
-    close(fp);
-    if (!found)
-    {
-        printf("\033[0;31mLogin Fail !\033[0m");
-    }
-}
 void Addstudent()
 {
     struct student s;
@@ -264,7 +236,7 @@ void ConverToCSV()
 
 int main()
 {
-    login();
+   
     int choice;
     do
     {
