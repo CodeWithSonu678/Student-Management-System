@@ -19,13 +19,30 @@ void Termnewline(char *str)
     }
 }
 
+int GetTotalStudents()
+{
+    FILE *fp = fopen("record.txt", "r");
+    if (fp == NULL)
+        return 0;
+
+    int count = 1;
+    char line[50];
+    while (fgets(line, sizeof(line), fp))
+    {
+        count++;
+    }
+
+    fclose(fp);
+    return count;
+}
+
 
 void Addstudent()
 {
     struct student s;
 
     FILE *fp;
-    fp = fopen("sonu.txt", "ab");
+    fp = fopen("record.txt", "ab");
     if (fp == NULL)
     {
         printf("\033[0;31mFile not found!\033[0m\n");
@@ -47,7 +64,7 @@ void Addstudent()
 
     fclose(fp);
 
-    printf("\033[0;32mStudent added successfully !\033[0m\n");
+    printf("\033[0;32mStudent added successfully ! And Now Number of total student is %d \033[0m\n", GetTotalStudents());
 }
 
 void Viewstudent()
@@ -55,7 +72,7 @@ void Viewstudent()
     struct student s;
 
     FILE *fp;
-    fp = fopen("sonu.txt", "r");
+    fp = fopen("record.txt", "r");
     if (fp == NULL)
     {
         printf("\033[0;31mFile not found!\033[0m\n");
@@ -82,7 +99,7 @@ void Searchstudent()
     struct student s;
     int roll, found = 0;
 
-    fp = fopen("sonu.txt", "rb");
+    fp = fopen("record.txt", "rb");
     if (fp == NULL)
     {
         printf("\033[0;31mData not found!\033[0m\n");
@@ -115,7 +132,7 @@ void Searchstudent()
 
 void Deletestudent()
 {
-    FILE *fp = fopen("sonu.txt", "rb");
+    FILE *fp = fopen("record.txt", "rb");
     FILE *temp = fopen("temprory.txt", "wb");
     struct student s;
     int roll, found = 0;
@@ -145,8 +162,8 @@ void Deletestudent()
 
     fclose(fp);
     fclose(temp);
-    remove("sonu.txt");
-    rename("temprory.txt", "sonu.txt");
+    remove("record.txt");
+    rename("temprory.txt", "record.txt");
 
     if (found)
     {
@@ -160,7 +177,7 @@ void Deletestudent()
 
 void Updatestudent()
 {
-    FILE *fp = fopen("sonu.txt", "rb+");
+    FILE *fp = fopen("record.txt", "rb+");
     struct student s;
     int roll, found = 0;
 
@@ -212,8 +229,8 @@ void Updatestudent()
 
 void ConverToCSV()
 {
-    FILE *fp = fopen("sonu.txt", "rb");
-    FILE *csv = fopen("sonu.csv", "w");
+    FILE *fp = fopen("record.txt", "rb");
+    FILE *csv = fopen("Records.csv", "w");
     struct student s;
 
     if (fp == NULL || csv == NULL)
