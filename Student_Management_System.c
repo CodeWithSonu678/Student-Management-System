@@ -243,7 +243,7 @@ void ConverToCSV()
 
     while (fread(&s, sizeof(s), 1, fp))
     {
-        fprintf(csv, "%d ,%s ,%.2f", s.roll, s.name, s.marks);
+        fprintf(csv, "%d ,%s ,%.2f\n", s.roll, s.name, s.marks);
     }
 
     fclose(fp);
